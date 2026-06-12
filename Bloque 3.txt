@@ -1,0 +1,331 @@
+﻿namespace Bloque3
+{
+    class Menu
+    {
+        static Random rnd = new Random();
+
+
+        public static void Ejecutar()
+        {
+            int opcion;  
+            do  
+            {  
+                Console.WriteLine("\n=== BLOQUE 3 ===");  
+                Console.WriteLine("1. Ejercicio A");  
+                Console.WriteLine("2. Ejercicio B");  
+                Console.WriteLine("3. Ejercicio C");  
+                Console.WriteLine("4. Ejercicio D");  
+                Console.WriteLine("5. Ejercicio E");  
+                Console.WriteLine("6. Ejercicio F");  
+                Console.WriteLine("7. Ejercicio G");  
+                Console.WriteLine("8. Ejercicio H");  
+                Console.WriteLine("9. Ejercicio I");  
+                Console.WriteLine("10. Ejercicio J");  
+                Console.WriteLine("11. Ejercicio K");  
+                Console.WriteLine("12. Ejercicio L");  
+                Console.WriteLine("13. Ejercicio M");  
+                Console.WriteLine("14. Ejercicio N");  
+                Console.WriteLine("0. Volver al menú principal");  
+                Console.Write("Opción: ");
+  
+                opcion = Convert.ToInt32(Console.ReadLine());  
+                switch (opcion)  
+                {  
+                    case 1: EjercicioA(); break;  
+                    case 2: EjercicioB(); break;  
+                    case 3: EjercicioC(); break;  
+                    case 4: EjercicioD(); break;  
+                    case 5: EjercicioE(); break;  
+                    case 6: EjercicioF(); break;  
+                    case 7: EjercicioG(); break;  
+                    case 8: EjercicioH(); break;  
+                    case 9: EjercicioI(); break;  
+                    case 10: EjercicioJ(); break;  
+                    case 11: EjercicioK(); break;  
+                    case 12: EjercicioL(); break;  
+                    case 13: EjercicioM(); break;  
+                    case 14: EjercicioN(); break;  
+                }  
+            } while (opcion != 0);
+        }
+
+
+        static void EjercicioA()  
+        {  
+            int v1 = 0, v2 = 0, v3 = 0;  
+            string voto;  
+            do  
+            {  
+                Console.Write("Vote 1 (Opción A), 2 (Opción B), 3 (Opción C) o 'terminar': ");  
+                voto = Console.ReadLine();  
+  
+                if (voto == "1") v1++;  
+                else if (voto == "2") v2++;  
+                else if (voto == "3") v3++;  
+            } while (voto.ToLower() != "terminar");  
+  
+            Console.WriteLine($"Resultados -> A: {v1} | B: {v2} | C: {v3}");  
+            if (v1 > v2 && v1 > v3) Console.WriteLine("Ganó la Opción A");  
+            else if (v2 > v1 && v2 > v3) Console.WriteLine("Ganó la Opción B");  
+            else if (v3 > v1 && v3 > v2) Console.WriteLine("Ganó la Opción C");  
+            else Console.WriteLine("Hubo un empate.");  
+        }  
+
+
+        static void EjercicioB()  
+        {  
+            Console.Write("Ingrese un número: ");  
+            int num = Convert.ToInt32(Console.ReadLine());  
+  
+            if (num < 1)  
+            {  
+                Console.WriteLine("No se puede (debe ser mayor o igual a 1).");  
+                return;  
+            }  
+  
+            for (int i = 1; i <= num; i++)  
+            {  
+                if (i % 2 != 0) Console.Write(i + " ");  
+            }  
+            Console.WriteLine();  
+        }  
+
+
+        static void EjercicioC()  
+        {  
+            Console.Write("Palabra: ");  
+            string palabra = Console.ReadLine().ToLower();  
+            Console.Write("Letra a buscar: ");  
+            char letra = Console.ReadLine().ToLower()[0];  
+  
+            int contador = 0;  
+            foreach (char c in palabra)  
+            {  
+                if (c == letra) contador++;  
+            }  
+            Console.WriteLine($"La letra '{letra}' aparece {contador} veces.");  
+        }  
+
+
+        static void EjercicioD()  
+        {  
+            double saldo = 1000;  
+            string op = "";  
+            while (op != "3")  
+            {  
+                Console.WriteLine($"\nSaldo actual: ${saldo}");  
+                Console.WriteLine("1-Depositar | 2-Retirar | 3-Salir");  
+                op = Console.ReadLine();  
+  
+                if (op == "1")  
+                {  
+                    Console.Write("Monto a depositar: ");  
+                    saldo += Convert.ToDouble(Console.ReadLine());  
+                }  
+                else if (op == "2")  
+                {  
+                    Console.Write("Monto a retirar: ");  
+                    double retiro = Convert.ToDouble(Console.ReadLine());  
+                    if (retiro > saldo) Console.WriteLine("Fondos insuficientes.");  
+                    else saldo -= retiro;  
+                }  
+            }  
+        }  
+
+
+        static void EjercicioE()  
+        {  
+            int encontrados = 0;  
+            int numero = 1;  
+  
+            while (encontrados < 50)  
+            {  
+                if ((numero % 2 == 0) ^ (numero % 5 == 0))  
+                {  
+                    Console.Write(numero + " ");  
+                    encontrados++;  
+                }  
+                numero++;  
+            }  
+            Console.WriteLine();  
+        }  
+
+
+        static void EjercicioF()  
+        {  
+            Console.Write("Palabra: ");  
+            string palabra = Console.ReadLine().ToUpper();  
+  
+            foreach (char c in palabra)  
+            {  
+                if (char.IsLetter(c))  
+                {  
+                    int posicion = c - 'A' + 1;  
+                    Console.Write(posicion + " ");  
+                }  
+            }  
+            Console.WriteLine();  
+        }  
+
+
+        static void EjercicioG()  
+        {  
+            int secreto = rnd.Next(1, 101);  
+            int intento, contador = 0;  
+  
+            do  
+            {  
+                Console.Write("Adivine el número (1-100): ");  
+                intento = Convert.ToInt32(Console.ReadLine());  
+                contador++;  
+  
+                if (intento < secreto) Console.WriteLine("Es más grande.");  
+                else if (intento > secreto) Console.WriteLine("Es más chico.");  
+  
+            } while (intento != secreto);  
+  
+            Console.WriteLine($"¡Acertaste! Te tomó {contador} intentos.");  
+        }  
+
+
+        static void EjercicioH()  
+        {  
+            Console.Write("Frase: ");  
+            string frase = Console.ReadLine();  
+            string[] palabras = frase.Split(' ');  
+  
+            for (int i = 0; i < palabras.Length; i++)  
+            {  
+                char[] caracteres = palabras[i].ToCharArray();  
+                Array.Reverse(caracteres);  
+                palabras[i] = new string(caracteres);  
+            }  
+  
+            Console.WriteLine(string.Join(" ", palabras));  
+        }  
+
+
+        static void EjercicioI()  
+        {  
+            Console.Write("Palabra: ");  
+            string palabra = Console.ReadLine().ToLower();  
+   
+            Dictionary<char, int> conteo = new Dictionary<char, int>();  
+  
+            foreach (char c in palabra)  
+            {  
+                if (char.IsLetter(c))  
+                {  
+                    if (conteo.ContainsKey(c)) conteo[c]++;  
+                    else conteo[c] = 1;  
+                }  
+            }  
+  
+            foreach (var par in conteo)  
+            {  
+                Console.WriteLine($"Letra '{par.Key}': {par.Value} veces");  
+            }  
+        }  
+
+
+        static void EjercicioJ()  
+        {  
+            string usuarioCorrecto = "admin";  
+            string claveCorrecta = "1234";  
+            int intentos = 3;  
+  
+            while (intentos > 0)  
+            {  
+                Console.Write("Usuario: ");  
+                string u = Console.ReadLine();  
+                Console.Write("Contraseña: ");  
+                string c = Console.ReadLine();  
+  
+                if (u == usuarioCorrecto && c == claveCorrecta)  
+                {  
+                    Console.WriteLine("¡Bienvenido al sistema!");  
+                    return;  
+                }  
+                intentos--;  
+                if (intentos > 0) Console.WriteLine($"Incorrecto. Quedan {intentos} intentos.");  
+            }  
+            Console.WriteLine("Accesos bloqueados.");  
+        }  
+
+
+        static void EjercicioK()  
+        {  
+            Console.Write("Ingrese un número (0-100): ");  
+            int n = Convert.ToInt32(Console.ReadLine());  
+  
+            if (n >= 0 && n <= 25) Console.WriteLine("Rango: 0-25");  
+            else if (n >= 26 && n <= 50) Console.WriteLine("Rango: 26-50");  
+            else if (n >= 51 && n <= 75) Console.WriteLine("Rango: 51-75");  
+            else if (n >= 76 && n <= 100) Console.WriteLine("Rango: 76-100");  
+            else Console.WriteLine("Fuera de rango.");  
+        }  
+
+
+        static void EjercicioL()  
+        {  
+            Console.Write("Peso (kg): ");  
+            double peso = Convert.ToDouble(Console.ReadLine());  
+            Console.Write("Altura (metros): ");  
+            double altura = Convert.ToDouble(Console.ReadLine());  
+  
+            double imc = peso / (altura * altura);  
+            Console.WriteLine($"Su IMC es: {imc:F2}");  
+  
+            if (imc < 18.5) Console.WriteLine("Categoría: Bajo peso");  
+            else if (imc < 25) Console.WriteLine("Categoría: Normal");  
+            else if (imc < 30) Console.WriteLine("Categoría: Sobrepeso");  
+            else Console.WriteLine("Categoría: Obesidad");  
+        }  
+
+
+        static void EjercicioM()  
+        {  
+            Console.Write("Palabra: ");  
+            string palabra = Console.ReadLine();  
+  
+            for (int i = 1; i <= palabra.Length; i++)  
+            {  
+                Console.WriteLine(palabra.Substring(0, i));  
+            }  
+        }  
+
+
+        static void EjercicioN()  
+        {  
+            char[] vocales = { 'a', 'e', 'i', 'o', 'u' };  
+            int indiceVocal = 0;  
+  
+            while (true)  
+            {  
+                Console.Write("\nIngrese una frase: ");  
+                string frase = Console.ReadLine();  
+  
+                if (frase == "agusfortnite2008")  
+                {  
+                    Console.WriteLine("Código de salida detectado. Fin.");  
+                    break;  
+                }  
+  
+                char vocalReemplazo = vocales[indiceVocal];  
+                char[] caracteres = frase.ToCharArray();  
+  
+                for (int i = 0; i < caracteres.Length; i++)  
+                {  
+                    char cMin = char.ToLower(caracteres[i]);  
+                    if (cMin == 'a' || cMin == 'e' || cMin == 'i' || cMin == 'o' || cMin == 'u')  
+                    {  
+                        caracteres[i] = char.IsUpper(caracteres[i]) ? char.ToUpper(vocalReemplazo) : vocalReemplazo;  
+                    }  
+                }  
+  
+                Console.WriteLine("Frase modificada: " + new string(caracteres));  
+                indiceVocal = (indiceVocal + 1) % vocales.Length;  
+            }  
+        }  
+    }
+}
